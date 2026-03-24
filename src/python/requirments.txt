@@ -1,0 +1,8 @@
+torch>=2.0.0
+numpy
+pandas
+statsmodels
+joblib
+scikit-elm
+scikit-learn
+git+https://github.com/amazon-science/chronos-forecasting.git

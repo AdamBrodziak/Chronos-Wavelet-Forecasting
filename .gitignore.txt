@@ -1,0 +1,26 @@
+# MATLAB
+*.asv
+*.mex*
+slprj/
+*.mat~
+*.mlx~
+*.prj
+
+resources
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.env
+
+# System & OS
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+
+output/*
