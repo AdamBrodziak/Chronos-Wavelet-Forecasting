@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This repository contains the official codebase for the study \*"Comparative Analysis of Foundation Models and Wavelet-Enhanced Methods in Load Forecasting"\*. 
+This repository contains the official codebase for the study "Comparative Analysis of Foundation Models and Wavelet-Enhanced Methods in Load Forecasting". 
 
 This study rigorously compares the zero-shot Chronos 2 Foundation Model against classical forecasting methods enhanced by Haar Wavelet decomposition for "stair-case" load forecasting. Our findings confirm the raw Foundation Model’s superiority (achieving an MAE of 0.0441), whereas explicit domain-specific decomposition degraded accuracy (best MAE: 0.0703). Unlike classical baselines that deteriorated rapidly over time, Chronos 2 maintained stability across various forecasting horizons. We conclude that manual feature engineering (such as wavelet decomposition) disrupts the latent representation learning of transformers, rendering traditional domain-specific preprocessing redundant in the era of foundation models.
 
@@ -15,8 +15,6 @@ The project is built on a hybrid architecture, utilizing MATLAB for workflow orc
 * `src/matlab/`: MATLAB Live Scripts (`.mlx`) representing various method combinations.
 
 * `src/python/`: Python modules invoked by MATLAB, including the foundation model integrations.
-
-* `results/raw\_forecasts/`: Output directory where Excel (`.xlsx`) prediction files are saved.
 
 ## Experimental Protocol
 
@@ -84,8 +82,6 @@ Since there is no single monolithic execution script, experiments are modularize
    - Haar\_A1\_CHRONOS.mlx
 4. The scripts will automatically invoke the Python modules located in src/python/python\_modules/ and save the prediction results as .xlsx files in the results/raw\_forecasts/ directory.
 
-### License
-
-This project is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0) license.
-
-You are free to download and share this repository for the purposes of peer review and reproducibility. However, you may not modify the material, create derivative works, or use it for commercial purposes.
+## License
+This project is licensed under the **MIT License**. 
+You are free to use, modify, and distribute this software for both academic and commercial purposes. However, if you use this code, data, or models in your research, **you are required to cite our paper**.
