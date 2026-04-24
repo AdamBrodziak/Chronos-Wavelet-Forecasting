@@ -22,7 +22,7 @@ from common.config import (
     MAT_VAR_NAME_TRAIN,
     MAT_VAR_NAME_TEST,
 )
-from common.data_loader import load_mat_data, normalize, split_train_test
+from common.data_loader import load_mat_data, split_train_test
 
 # Import pipeline'ów
 import run_simple
@@ -72,15 +72,9 @@ def run_all(
     if data_path is None:
         data_path = DATA_DIR / "ab_diff_zestaw.mat"
 
-    # TODO zmiana: wczytywanie danych train i test z .mat
     # 1. Wczytaj dane
     print(f"[run_all] Wczytywanie danych: {data_path}")
     y_train, y_test = load_mat_data(data_path, var_name_train, var_name_test)
-    # y_train, y_test = split_train_test(data, test_ratio=test_ratio)
-
-    # Normalizacja
-    y_train_norm, mean, std = normalize(y_train)
-    y_test_norm = (y_test - mean) / std
 
     print(f"[run_all] Dane: train={len(y_train)}, test={len(y_test)}")
     print(f"[run_all] Warianty: {variants}")
@@ -105,15 +99,15 @@ def run_all(
         # Warianty Haar wymagają dodatkowych parametrów
         if "Haar" in variant:
             results = module.run(
-                y_train=y_train_norm,
-                y_test=y_test_norm,
+                y_train=y_train,
+                y_test=y_test,
                 selected_levels=haar_levels,
                 horizons=horizons,
             )
         else:
             results = module.run(
-                y_train=y_train_norm,
-                y_test=y_test_norm,
+                y_train=y_train,
+                y_test=y_test,
                 horizons=horizons,
             )
 

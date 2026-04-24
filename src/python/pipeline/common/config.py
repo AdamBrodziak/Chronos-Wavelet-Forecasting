@@ -19,8 +19,10 @@ MODELS_DIR = PROJECT_ROOT / "models" / "finetuned"
 
 
 # Pliki .mat
-MAT_VAR_NAME_TRAIN = "ab_diff_train_tab_raw"
-MAT_VAR_NAME_TEST = "ab_diff_test_tab_raw"
+# MAT_VAR_NAME_TRAIN = "ab_diff_train_tab_raw"
+# MAT_VAR_NAME_TEST = "ab_diff_test_tab_raw"
+MAT_VAR_NAME_TRAIN = "ab_diff_train_norm"
+MAT_VAR_NAME_TEST = "ab_diff_test_norm"
 
 # =============================================================================
 # Model Chronos 2
@@ -33,7 +35,7 @@ MODEL_DEVICE_MAP = "auto"      # "auto", "cuda", "cpu"
 # Horyzonty predykcji (w krokach czasowych)
 # =============================================================================
 # HORIZONS = [1, 16, 96]
-HORIZONS = [16]
+HORIZONS = [96]
 
 # =============================================================================
 # Kwantyle do predykcji

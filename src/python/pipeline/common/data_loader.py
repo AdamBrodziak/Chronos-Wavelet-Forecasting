@@ -84,6 +84,9 @@ def load_mat_data(mat_path: str | Path, var_name_train: str, var_name_test: str)
     if len(y_train) == 0 or len(y_test) == 0:
         raise ValueError("Jedna z zmiennych jest pusta")
     
+    # tymczasowo przycinamy zbiór testowy do miesiąca testowego (2880 próbek)
+    y_test = y_test[:2880]
+
     return y_train, y_test
 
 

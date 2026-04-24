@@ -126,8 +126,8 @@ if __name__ == "__main__":
     y_train, y_test = split_train_test(data, test_ratio=0.2)
 
     # Normalizacja
-    y_train_norm, mean, std = normalize(y_train)
-    y_test_norm = (y_test - mean) / std
+    # y_train_norm, mean, std = normalize(y_train)
+    # y_test_norm = (y_test - mean) / std
 
-    results = run(y_train_norm, y_test_norm)
+    results = run(y_train, y_test)
     print("\n=== KONIEC ===")

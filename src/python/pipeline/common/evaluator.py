@@ -34,13 +34,16 @@ def compute_r2_classic(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         return 0.0
     return float(1.0 - ss_res / ss_tot)
 
-#TODO sprawdzić poprawność wzoru względem excela
+# Wzór R2_alt (Frakcja Wyjaśnionej Wariancji) — zgodny z MATLAB:
+# R2_alt = sum((y_pred - mean(y_true))^2) / sum((y_true - mean(y_true))^2)
 def compute_r2_alt(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     y_true, y_pred = _validate(y_true, y_pred)
-    if np.std(y_true) == 0 or np.std(y_pred) == 0:
+    mean_true = np.mean(y_true)
+    ss_pred = np.sum((y_pred - mean_true) ** 2)
+    ss_tot = np.sum((y_true - mean_true) ** 2)
+    if ss_tot == 0:
         return 0.0
-    corr = np.corrcoef(y_true, y_pred)[0, 1]
-    return float(corr ** 2)
+    return float(ss_pred / ss_tot)
 
 
 def evaluate_all(y_true: np.ndarray, y_pred: np.ndarray) -> dict[str, float]:

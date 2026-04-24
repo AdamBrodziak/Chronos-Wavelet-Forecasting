@@ -32,7 +32,7 @@ def save_predictions(
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    timestamp = datetime.now().strftime("%Y-%m-%dT%H-%M")
+    timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
     filename = f"{variant_name}_h{horizon}_{timestamp}_pred.csv"
     df = pd.DataFrame({
         "y_true": y_true[:len(predictions)],
