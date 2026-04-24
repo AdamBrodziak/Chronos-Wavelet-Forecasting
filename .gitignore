@@ -24,3 +24,7 @@ Thumbs.db
 *.tmp
 
 output/*
+
+.agent/*
+
+project_info/*

@@ -14,7 +14,11 @@ def get_pipeline():
     global PIPELINE
     if PIPELINE is None:
         print("Ładowanie modelu Chronos po raz pierwszy...")
-        PIPELINE = Chronos2Pipeline.from_pretrained("amazon/chronos-2", device_map="auto")
+        PIPELINE = Chronos2Pipeline.from_pretrained(
+            "amazon/chronos-2", 
+            device_map="auto",
+            torch_dtype=torch.bfloat16
+        )
     return PIPELINE
 
 def run_forecast(signal_data, prediction_length):
