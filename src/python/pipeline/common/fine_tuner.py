@@ -304,5 +304,5 @@ def _prepare_fit_inputs(data: np.ndarray) -> list:
     """
     if data is None:
         return None
-    tensor = torch.tensor(data, dtype=torch.float32).unsqueeze(0)
+    tensor = torch.tensor(data, dtype=torch.float32).unsqueeze(0) #TODO sprawdzić czy nie powinno byc torch.bfloat16
     return [tensor]

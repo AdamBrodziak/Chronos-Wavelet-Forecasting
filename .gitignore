@@ -6,8 +6,6 @@ slprj/
 *.mlx~
 *.prj
 
-resources
-
 # Python
 __pycache__/
 *.py[cod]
@@ -23,8 +21,12 @@ Thumbs.db
 *.bak
 *.tmp
 
+# Data
+resources/*
+results/*
+models/*
 output/*
-
-.agent/*
-
 project_info/*
+
+chronos-2-finetuned
+.agent/*

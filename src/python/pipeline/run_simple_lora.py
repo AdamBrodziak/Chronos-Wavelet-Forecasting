@@ -2,7 +2,7 @@
 Pipeline: Simple-LoRA — Chronos 2 + LoRA fine-tuning na oryginalnych danych.
 
 Flow (z przebieg-danych):
-  wczytanie pliku → diff → normalizacja → Chronos 2
+  wczytanie pliku → Chronos 2
   → czy model jest już dostrojony?
     NIE → fine-tuning LoRA → załaduj dostrojony model
     TAK → załaduj dostrojony model
@@ -15,7 +15,7 @@ from pathlib import Path
 
 from common.config import HORIZONS, VARIANT_SIMPLE_LORA, MODELS_DIR
 from common.data_loader import (
-    matlab_to_numpy, split_train_test, normalize,
+    matlab_to_numpy, split_train_test, #normalize,
 )
 from common.model_manager import get_pipeline, load_finetuned_pipeline
 from common.fine_tuner import fine_tune_lora, save_finetuned_model
@@ -39,7 +39,7 @@ def run(
     Uruchomienie pipeline Simple-LoRA.
 
     Args:
-        y_train: Dane treningowe (po diff + normalizacji)
+        y_train: Dane treningowe (już po diff + normalizacji)
         y_test: Dane testowe
         horizons: Lista horyzontów
         variant_name: Nazwa wariantu

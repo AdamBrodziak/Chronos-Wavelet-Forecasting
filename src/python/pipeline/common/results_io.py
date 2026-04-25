@@ -8,7 +8,7 @@ import pandas as pd
 from pathlib import Path
 from datetime import datetime
 
-from .config import RESULTS_DIR, MODELS_DIR
+from .config import RESULTS_DIR, MODELS_DIR, SUMMARY_DIR
 
 
 def save_predictions(
@@ -89,7 +89,7 @@ def save_all_metrics_summary(
         output_dir: Katalog do zapisu
     """
     if output_dir is None:
-        output_dir = RESULTS_DIR
+        output_dir = SUMMARY_DIR
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 

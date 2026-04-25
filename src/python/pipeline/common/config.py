@@ -15,6 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[4]
 
 DATA_DIR = PROJECT_ROOT / "data"
 RESULTS_DIR = PROJECT_ROOT / "results" / "pipeline_results"
+SUMMARY_DIR = PROJECT_ROOT / "results" / "pipeline_results" / "summary"
 MODELS_DIR = PROJECT_ROOT / "models" / "finetuned"
 
 
@@ -35,7 +36,7 @@ MODEL_DEVICE_MAP = "auto"      # "auto", "cuda", "cpu"
 # Horyzonty predykcji (w krokach czasowych)
 # =============================================================================
 # HORIZONS = [1, 16, 96]
-HORIZONS = [96]
+HORIZONS = [1,16,96]
 
 # =============================================================================
 # Kwantyle do predykcji
