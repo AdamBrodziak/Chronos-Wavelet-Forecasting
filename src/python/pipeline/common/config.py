@@ -74,9 +74,18 @@ METRIC_NAMES = ["MAE", "RMSE", "MAPE", "R2_classic", "R2_alt"]
 # =============================================================================
 # Nazwy wariantów pipeline
 # =============================================================================
-VARIANT_SIMPLE = "Simple"
+# proste modelowanie bez dekompozycji
+VARIANT_SIMPLE = "Simple"                              
 VARIANT_SIMPLE_LORA = "Simple-LoRA"
-VARIANT_HAAR_AFTER = "Haar-after"
+
+# pomysł profesora
+VARIANT_HAAR_AFTER = "Haar-after"                      
 VARIANT_HAAR_AFTER_LORA = "Haar-after-LoRA"
-VARIANT_HAAR_IN = "Haar-in"
+
+# przetestowane w Matlabie
+VARIANT_HAAR_IN = "Haar-in"                            
 VARIANT_HAAR_IN_LORA = "Haar-in-LoRA"
+
+# pomysł AI
+VARIANT_HAAR_AFTER_SUM = "Haar-after-sum"              
+VARIANT_HAAR_AFTER_SUM_LORA = "Haar-after-sum-LoRA"

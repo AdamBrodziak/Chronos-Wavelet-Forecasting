@@ -4,6 +4,7 @@ Master runner — uruchamia wszystkie lub wybrane pipeline'y z jednego miejsca.
 Użycie:
     python run_all.py                          # Wszystkie warianty
     python run_all.py Simple Simple-LoRA       # Tylko wybrane
+    python run_all.py --variants Simple Haar-after --test_ratio 0.15 --haar_levels A5 D1 D2 D3 D4 D5 
 """
 
 import sys
@@ -19,6 +20,8 @@ from common.config import (
     VARIANT_HAAR_AFTER_LORA,
     VARIANT_HAAR_IN,
     VARIANT_HAAR_IN_LORA,
+    VARIANT_HAAR_AFTER_SUM,
+    VARIANT_HAAR_AFTER_SUM_LORA,
     MAT_VAR_NAME_TRAIN,
     MAT_VAR_NAME_TEST,
 )
@@ -31,8 +34,10 @@ import run_haar_after
 import run_haar_after_lora
 import run_haar_in
 import run_haar_in_lora
+import run_haar_after_sum
+import run_haar_after_sum_lora
 
-# Mapowanie nazwa → moduł
+# Mapowanie nazwa -> moduł
 PIPELINES = {
     VARIANT_SIMPLE: run_simple,
     VARIANT_SIMPLE_LORA: run_simple_lora,
@@ -40,6 +45,8 @@ PIPELINES = {
     VARIANT_HAAR_AFTER_LORA: run_haar_after_lora,
     VARIANT_HAAR_IN: run_haar_in,
     VARIANT_HAAR_IN_LORA: run_haar_in_lora,
+    VARIANT_HAAR_AFTER_SUM: run_haar_after_sum,
+    VARIANT_HAAR_AFTER_SUM_LORA: run_haar_after_sum_lora,
 }
 
 
@@ -67,8 +74,6 @@ def run_all(
         variants = list(PIPELINES.keys())
     if horizons is None:
         horizons = HORIZONS
-    if haar_levels is None:
-        haar_levels = ["A5"]
     if data_path is None:
         data_path = DATA_DIR / "ab_diff_zestaw.mat"
 
@@ -129,10 +134,39 @@ def run_all(
 
 
 if __name__ == "__main__":
-    # CLI: python run_all.py [variant1] [variant2] ...
-    if len(sys.argv) > 1:
-        selected = sys.argv[1:]
-    else:
-        selected = None
-
-    run_all(variants=selected)
+    import argparse
+    
+    parser = argparse.ArgumentParser(description="Master runner — uruchamia wszystkie lub wybrane pipeline'y.")
+    
+    # Wsparcie dla wariantów podawanych pozycyjnie (np. python run_all.py Simple Simple-LoRA)
+    parser.add_argument(
+        "positional_variants", 
+        nargs="*", 
+        type=str, 
+        help="Lista wariantów do uruchomienia podana bez flagi (wsteczna kompatybilność)"
+    )
+    
+    parser.add_argument("--variants", nargs="+", type=str, help="Lista wariantów do uruchomienia (z flagą)")
+    parser.add_argument("--data_path", type=str, help="Ścieżka do pliku .mat")
+    parser.add_argument("--var_name_train", type=str, default=MAT_VAR_NAME_TRAIN, help="Nazwa zmiennej train w .mat")
+    parser.add_argument("--var_name_test", type=str, default=MAT_VAR_NAME_TEST, help="Nazwa zmiennej test w .mat")
+    parser.add_argument("--test_ratio", type=float, default=0.2, help="Podział train/test")
+    parser.add_argument("--horizons", nargs="+", type=int, help="Horyzonty predykcji")
+    parser.add_argument("--haar_levels", nargs="+", type=str, help="Poziomy Haar dla wariantów Haar-*")
+    
+    args = parser.parse_args()
+    
+    # Złączamy logikę wariantów podanych pozycyjnie i przez flagę --variants
+    selected_variants = args.variants if args.variants else args.positional_variants
+    if not selected_variants:
+        selected_variants = None
+        
+    run_all(
+        variants=selected_variants,
+        data_path=args.data_path,
+        var_name_train=args.var_name_train,
+        var_name_test=args.var_name_test,
+        test_ratio=args.test_ratio,
+        horizons=args.horizons,
+        haar_levels=args.haar_levels,
+    )

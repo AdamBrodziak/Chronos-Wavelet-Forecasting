@@ -4,9 +4,9 @@ Pipeline: Simple — Chronos 2 zero-shot na oryginalnych danych.
 Najprostszy wariant. Brak fine-tuningu, brak dekompozycji Haar.
 
 Flow (z przebieg-danych):
-  wczytanie pliku → diff → normalizacja → Chronos 2
-  → dla każdego horyzontu: rolling window → zapisz predykcje
-  → obliczenie metryk → zapisanie wyników → koniec
+  wczytanie pliku -> diff -> normalizacja -> Chronos 2
+  -> dla każdego horyzontu: rolling window -> zapisz predykcje
+  -> obliczenie metryk -> zapisanie wyników -> koniec
 """
 
 import numpy as np
@@ -46,7 +46,7 @@ def run(
     # 1. Załaduj model
     pipeline = get_pipeline()
 
-    # 2. Dla każdego horyzontu: rolling window → ewaluacja → zapis
+    # 2. Dla każdego horyzontu: rolling window -> ewaluacja -> zapis
     all_results = []
 
     for horizon in horizons:
@@ -90,7 +90,7 @@ def run_from_matlab(y_train_raw, y_test_raw, step_length):
     """
     Punkt wejścia wywoływany z MATLAB-a.
 
-    Zachowuje kompatybilność z istniejącym interfejsem MATLAB→Python.
+    Zachowuje kompatybilność z istniejącym interfejsem MATLAB->Python.
     Używa jednego horyzontu (step_length) zamiast pętli po horyzontach.
 
     Args:

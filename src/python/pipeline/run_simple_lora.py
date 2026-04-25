@@ -2,12 +2,12 @@
 Pipeline: Simple-LoRA — Chronos 2 + LoRA fine-tuning na oryginalnych danych.
 
 Flow (z przebieg-danych):
-  wczytanie pliku → Chronos 2
-  → czy model jest już dostrojony?
-    NIE → fine-tuning LoRA → załaduj dostrojony model
-    TAK → załaduj dostrojony model
-  → dla każdego horyzontu: rolling window → zapisz predykcje
-  → obliczenie metryk → zapisanie wyników → koniec
+  wczytanie pliku -> Chronos 2
+  -> czy model jest już dostrojony?
+    NIE -> fine-tuning LoRA -> załaduj dostrojony model
+    TAK -> załaduj dostrojony model
+  -> dla każdego horyzontu: rolling window -> zapisz predykcje
+  -> obliczenie metryk -> zapisanie wyników -> koniec
 """
 
 import numpy as np

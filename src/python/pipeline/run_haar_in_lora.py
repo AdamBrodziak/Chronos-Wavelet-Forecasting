@@ -1,16 +1,17 @@
 """
-Pipeline: Haar-in-LoRA — Dekompozycja → LoRA per poziom → predykcja per poziom → złożenie.
+Pipeline: Haar-in-LoRA — Dekompozycja -> LoRA per poziom -> predykcja per poziom -> złożenie.
 
 Z kombinacje-mozliwosci:
-  dane wejściowe → dekompozycja dyskretna Haar
-  → wybranie poziomów
-  → lora fine-tuning Chronos 2 na rozłożonych danych DLA KAŻDEGO MODELU
-  → predykcja wybranych poziomów (Chronos 2, osobny model per poziom)
-  → złożenie predykcji
-  → ewaluacja
+  dane wejściowe -> dekompozycja dyskretna Haar
+  -> wybranie poziomów
+  -> lora fine-tuning Chronos 2 na rozłożonych danych DLA KAŻDEGO MODELU
+  -> predykcja wybranych poziomów (Chronos 2, osobny model per poziom)
+  -> złożenie predykcji
+  -> ewaluacja
 
 Najbardziej złożony wariant — osobny model LoRA dla każdego poziomu Haara.
 """
+#TODO POPRAWIĆ TO! OBECNIE JEST TAKIE SAME JAK HAAR-AFTER-LORA!
 
 import numpy as np
 from pathlib import Path
@@ -86,7 +87,7 @@ def run(
             save_finetuned_model(ft_pipeline, model_name)
             level_pipelines[level_name] = ft_pipeline
 
-    # 3. Per horyzont: predykcja per poziom → suma
+    # 3. Per horyzont: predykcja per poziom -> suma
     all_results = []
 
     for horizon in horizons:
@@ -97,7 +98,7 @@ def run(
         combined_predictions = np.zeros(len(y_test))
 
         for level_name in selected_levels:
-            print(f"  → Predykcja poziomu: {level_name}")
+            print(f"  -> Predykcja poziomu: {level_name}")
 
             level_signal = reconstruct_single_level(decomp, level_name)
             level_train = level_signal[:len(y_train)]

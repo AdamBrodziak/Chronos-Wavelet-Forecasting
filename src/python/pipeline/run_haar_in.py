@@ -1,17 +1,19 @@
 """
-Pipeline: Haar-in — Dekompozycja → osobna predykcja dla każdego poziomu → złożenie.
+Pipeline: Haar-in — Dekompozycja -> osobna predykcja dla każdego poziomu -> złożenie.
 
 Z kombinacje-mozliwosci:
-  dane wejściowe → dekompozycja dyskretna Haar
-  → wybranie poziomów do dekompozycji Haar'a
-  → predykcja wybranych poziomów (każdy osobno, Chronos 2)
-  → złożenie predykcji
-  → różne horyzonty → ewaluacja
+  dane wejściowe -> dekompozycja dyskretna Haar
+  -> wybranie poziomów do dekompozycji Haar'a
+  -> predykcja wybranych poziomów (każdy osobno, Chronos 2)
+  -> złożenie predykcji
+  -> różne horyzonty -> ewaluacja
 
 Kluczowa różnica vs Haar-after:
   Haar-after: najpierw składa, potem predykuje
   Haar-in:    predykuje OSOBNO per poziom, potem składa
 """
+
+#TODO POPRAWIĆ TO! OBECNIE JEST TAKIE SAME JAK HAAR-AFTER!
 
 import numpy as np
 
@@ -38,7 +40,7 @@ def run(
     Dla każdego wybranego poziomu Haara:
     1. Rekonstruuje sygnał w dziedzinie czasu z tego jednego poziomu
     2. Uruchamia rolling window predykcję na tym sygnale
-    3. Sumuje predykcje ze wszystkich poziomów → finalna predykcja
+    3. Sumuje predykcje ze wszystkich poziomów -> finalna predykcja
     """
     if horizons is None:
         horizons = HORIZONS
@@ -59,7 +61,7 @@ def run(
     # 2. Model
     pipeline = get_pipeline()
 
-    # 3. Per horyzont: predykcja per poziom → suma
+    # 3. Per horyzont: predykcja per poziom -> suma
     all_results = []
 
     for horizon in horizons:
@@ -71,7 +73,7 @@ def run(
         combined_predictions = np.zeros(len(y_test))
 
         for level_name in selected_levels:
-            print(f"  → Predykcja poziomu: {level_name}")
+            print(f"  -> Predykcja poziomu: {level_name}")
 
             # Rekonstrukcja jednego poziomu w dziedzinie czasu
             level_signal = reconstruct_single_level(decomp, level_name)

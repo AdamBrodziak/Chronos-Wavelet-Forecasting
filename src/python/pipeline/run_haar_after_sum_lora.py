@@ -1,15 +1,15 @@
 """
-Pipeline: Haar-after-LoRA — Dekompozycja -> złożenie -> LoRA fine-tuning -> predykcja.
+Pipeline: Haar-after-LoRA — Dekompozycja → złożenie → LoRA fine-tuning → predykcja.
 
 Z kombinacje-mozliwosci:
-  dane wejściowe -> dekompozycja dyskretna Haar
-  -> wybranie poziomów -> złożenie wybranych sygnałów
-  -> lora fine-tuning Chronos 2 dla każdego poziomu/modelu
-  -> Chronos 2 -> predykcja
-  -> różne horyzonty -> ewaluacja
+  dane wejściowe → dekompozycja dyskretna Haar
+  → wybranie poziomów → złożenie wybranych sygnałów
+  → lora fine-tuning Chronos 2 dla każdego poziomu/modelu
+  → Chronos 2 → predykcja
+  → różne horyzonty → ewaluacja
 """
 
-#TODO LOGIKA JAK DLA HAAR-AFTER-SUM, ŹLE! takie same jak HAAR-AFTER-LORA
+#TODO takie same jak HAAR_AFTER_LORA, ŹLE!
 
 import numpy as np
 from pathlib import Path

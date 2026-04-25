@@ -3,11 +3,11 @@ Fine-tuning — osobny workflow dostrajania modelu Chronos 2.
 
 Z przebieg-danych (flow Fine-tuning):
   podział danych na treningowe i walidacyjne (tren_FT + val_FT)
-  → dopasowanie (fit) na tren_FT → predykcja na val_FT
-  → obliczenie MAE na val_FT → zapisz MAE
-  → czy MAE jest zadowalające?
-    NIE → zmiana hiperparametrów (grid-search?) → fit
-    TAK → zapisz ulepszony model → koniec
+  -> dopasowanie (fit) na tren_FT -> predykcja na val_FT
+  -> obliczenie MAE na val_FT -> zapisz MAE
+  -> czy MAE jest zadowalające?
+    NIE -> zmiana hiperparametrów (grid-search?) -> fit
+    TAK -> zapisz ulepszony model -> koniec
 
 Ten workflow jest NIEZALEŻNY od pipeline'ów predykcyjnych.
 Służy do znalezienia najlepszych hiperparametrów LoRA,
