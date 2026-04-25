@@ -1,20 +1,17 @@
 """
-Pipeline: Haar-after-LoRA — Dekompozycja → złożenie → LoRA fine-tuning → predykcja.
+Pipeline: Haar-after-sum-LoRA — Dekompozycja → złożenie → LoRA fine-tuning na połączonym sygnale → predykcja.
 
 Z kombinacje-mozliwosci:
   dane wejściowe → dekompozycja dyskretna Haar
-  → wybranie poziomów → złożenie wybranych sygnałów
-  → lora fine-tuning Chronos 2 dla każdego poziomu/modelu
-  → Chronos 2 → predykcja
+  → wybranie poziomów → złożenie wybranych sygnałów do jednego na osi czasu
+  → lora fine-tuning Chronos 2 DLA ZŁOŻONEGO SYGNAŁU (jeden model)
+  → Chronos 2 → predykcja na złożonym sygnale
   → różne horyzonty → ewaluacja
 """
-
-#TODO takie same jak HAAR_AFTER_LORA, ŹLE!
-
 import numpy as np
 from pathlib import Path
 
-from common.config import HORIZONS, VARIANT_HAAR_AFTER_LORA, MODELS_DIR
+from common.config import HORIZONS, VARIANT_HAAR_AFTER_SUM_LORA, MODELS_DIR
 from common.data_loader import matlab_to_numpy, split_train_test
 from common.model_manager import get_pipeline, load_finetuned_pipeline
 from common.fine_tuner import fine_tune_lora, save_finetuned_model
@@ -30,18 +27,22 @@ def run(
     selected_levels: list[str] = None,
     max_decomposition_level: int = 5,
     horizons: list[int] = None,
-    variant_name: str = VARIANT_HAAR_AFTER_LORA,
-    model_save_name: str = "chronos2_haar_after_lora",
+    variant_name: str = VARIANT_HAAR_AFTER_SUM_LORA,
+    model_save_name: str = "chronos2_haar_after_sum_lora",
     force_retrain: bool = False,
     lora_config: dict = None,
     learning_rate: float = None,
     num_steps: int = None,
 ):
-    """Pipeline Haar-after-LoRA."""
+    """Pipeline Haar-after-sum-LoRA."""
     if horizons is None:
         horizons = HORIZONS
     if selected_levels is None:
-        selected_levels = ["A5"]
+        full_data = np.concatenate([y_train, y_test])
+        from common.haar_utils import get_level_names
+        decomp_tmp = haar_decompose(full_data, max_level=max_decomposition_level)
+        selected_levels = get_level_names(decomp_tmp)
+        del decomp_tmp
 
     levels_str = "_".join(selected_levels)
     full_model_name = f"{model_save_name}_{levels_str}"

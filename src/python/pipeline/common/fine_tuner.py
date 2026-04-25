@@ -282,7 +282,8 @@ def save_finetuned_model(
 
     print(f"[fine_tuner] Zapisuję model do: {save_path}")
     pipeline.model.save_pretrained(save_path)
-    pipeline.tokenizer.save_pretrained(save_path)
+    if hasattr(pipeline, "tokenizer") and pipeline.tokenizer is not None:
+        pipeline.tokenizer.save_pretrained(save_path)
     print(f"[fine_tuner] Model zapisany.")
 
 
