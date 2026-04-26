@@ -52,6 +52,8 @@ DEFAULT_LORA_CONFIG = {
     # Można tu dodać: "target_modules": ["self_attention.q", "self_attention.v"]
 }
 
+DEFAULT_LORA_SPLIT_RATIO = 0.2
+
 DEFAULT_LORA_TRAINING = {
     "learning_rate": 1e-4,
     "num_steps": 1000,
