@@ -28,8 +28,9 @@ def save_predictions(
         output_dir: Katalog do zapisu (domyślnie: RESULTS_DIR)
     """
     if output_dir is None:
-        output_dir = RESULTS_DIR
-    output_dir = Path(output_dir)
+        output_dir = RESULTS_DIR / variant_name
+    else:
+        output_dir = Path(output_dir) / variant_name
     output_dir.mkdir(parents=True, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
@@ -58,8 +59,9 @@ def save_metrics(
         output_dir: Katalog do zapisu (domyślnie: RESULTS_DIR)
     """
     if output_dir is None:
-        output_dir = RESULTS_DIR
-    output_dir = Path(output_dir)
+        output_dir = RESULTS_DIR / variant_name
+    else:
+        output_dir = Path(output_dir) / variant_name
     output_dir.mkdir(parents=True, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y-%m-%dT%H-%M")
