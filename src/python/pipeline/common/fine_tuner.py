@@ -35,6 +35,7 @@ def fine_tune_lora(
     learning_rate: float = None,
     num_steps: int = None,
     batch_size: int = None,
+    output_dir: str | Path = None,
 ) -> Chronos2Pipeline:
     """
     Fine-tuning modelu Chronos 2 za pomocą LoRA.
@@ -48,6 +49,7 @@ def fine_tune_lora(
         learning_rate: Learning rate (domyślnie z config)
         num_steps: Liczba kroków treningowych (domyślnie z config)
         batch_size: Batch size (domyślnie z config)
+        output_dir: Katalog na pliki tymczasowe i wagi modelu
 
     Returns:
         Nowy Chronos2Pipeline z dostrojonymi wagami LoRA.
@@ -73,6 +75,8 @@ def fine_tune_lora(
     print(f"  - learning_rate: {learning_rate}")
     print(f"  - num_steps: {num_steps}")
     print(f"  - batch_size: {batch_size}")
+    if output_dir:
+        print(f"  - output_dir: {output_dir}")
 
     # Wywołanie fit() z Chronos 2 API
     fit_kwargs = dict(
@@ -86,6 +90,8 @@ def fine_tune_lora(
     )
     if val_inputs is not None:
         fit_kwargs["validation_inputs"] = val_inputs
+    if output_dir is not None:
+        fit_kwargs["output_dir"] = str(output_dir)
 
     finetuned_pipeline = pipeline.fit(**fit_kwargs)
 

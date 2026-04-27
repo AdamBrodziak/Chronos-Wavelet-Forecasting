@@ -24,7 +24,7 @@ Thumbs.db
 # Data
 resources/*
 results/*
-models/*
+# models/*
 output/*
 project_info/*
 

@@ -76,6 +76,7 @@ def run(
             lora_config=lora_config,
             learning_rate=learning_rate,
             num_steps=num_steps,
+            output_dir=model_path,
         )
 
         # Zapisz model
