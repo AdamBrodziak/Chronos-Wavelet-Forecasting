@@ -7,3 +7,4 @@ scikit-elm
 scikit-learn
 git+https://github.com/amazon-science/chronos-forecasting.git
 pywavelets
+peft
