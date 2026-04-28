@@ -1,0 +1,94 @@
+{
+  "best_global_step": 400,
+  "best_metric": 6.054197788238525,
+  "best_model_checkpoint": "/home/adam/PycharmProjects/Chronos-Wavelet-Forecasting/models/finetuned/chronos2_haar_after_sum_lora_A4_D2/checkpoint-400",
+  "epoch": 0.4,
+  "eval_steps": 100,
+  "global_step": 400,
+  "is_hyper_param_search": false,
+  "is_local_process_zero": true,
+  "is_world_process_zero": true,
+  "log_history": [
+    {
+      "epoch": 0.1,
+      "grad_norm": 3.0195558071136475,
+      "learning_rate": 9.010000000000001e-05,
+      "loss": 5.6188,
+      "step": 100
+    },
+    {
+      "epoch": 0.1,
+      "eval_loss": 6.214303970336914,
+      "eval_runtime": 0.5217,
+      "eval_samples_per_second": 1.917,
+      "eval_steps_per_second": 1.917,
+      "step": 100
+    },
+    {
+      "epoch": 0.2,
+      "grad_norm": 2.7182037830352783,
+      "learning_rate": 8.010000000000001e-05,
+      "loss": 5.5571,
+      "step": 200
+    },
+    {
+      "epoch": 0.2,
+      "eval_loss": 6.190871715545654,
+      "eval_runtime": 0.5218,
+      "eval_samples_per_second": 1.916,
+      "eval_steps_per_second": 1.916,
+      "step": 200
+    },
+    {
+      "epoch": 0.3,
+      "grad_norm": 4.278641223907471,
+      "learning_rate": 7.01e-05,
+      "loss": 5.6181,
+      "step": 300
+    },
+    {
+      "epoch": 0.3,
+      "eval_loss": 6.273807525634766,
+      "eval_runtime": 0.5214,
+      "eval_samples_per_second": 1.918,
+      "eval_steps_per_second": 1.918,
+      "step": 300
+    },
+    {
+      "epoch": 0.4,
+      "grad_norm": 10.760539054870605,
+      "learning_rate": 6.0100000000000004e-05,
+      "loss": 5.5862,
+      "step": 400
+    },
+    {
+      "epoch": 0.4,
+      "eval_loss": 6.054197788238525,
+      "eval_runtime": 0.5218,
+      "eval_samples_per_second": 1.916,
+      "eval_steps_per_second": 1.916,
+      "step": 400
+    }
+  ],
+  "logging_steps": 100,
+  "max_steps": 1000,
+  "num_input_tokens_seen": 0,
+  "num_train_epochs": 9223372036854775807,
+  "save_steps": 100,
+  "stateful_callbacks": {
+    "TrainerControl": {
+      "args": {
+        "should_epoch_stop": false,
+        "should_evaluate": false,
+        "should_log": false,
+        "should_save": true,
+        "should_training_stop": false
+      },
+      "attributes": {}
+    }
+  },
+  "total_flos": 0.0,
+  "train_batch_size": 4,
+  "trial_name": null,
+  "trial_params": null
+}

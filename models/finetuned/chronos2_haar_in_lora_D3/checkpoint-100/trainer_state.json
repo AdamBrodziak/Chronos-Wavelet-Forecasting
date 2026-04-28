@@ -1,0 +1,49 @@
+{
+  "best_global_step": 100,
+  "best_metric": 7.400084972381592,
+  "best_model_checkpoint": "/home/adam/PycharmProjects/Chronos-Wavelet-Forecasting/models/finetuned/chronos2_haar_in_lora_D3/checkpoint-100",
+  "epoch": 0.1,
+  "eval_steps": 100,
+  "global_step": 100,
+  "is_hyper_param_search": false,
+  "is_local_process_zero": true,
+  "is_world_process_zero": true,
+  "log_history": [
+    {
+      "epoch": 0.1,
+      "grad_norm": 3.9784061908721924,
+      "learning_rate": 9.010000000000001e-05,
+      "loss": 5.3743,
+      "step": 100
+    },
+    {
+      "epoch": 0.1,
+      "eval_loss": 7.400084972381592,
+      "eval_runtime": 0.1133,
+      "eval_samples_per_second": 8.83,
+      "eval_steps_per_second": 8.83,
+      "step": 100
+    }
+  ],
+  "logging_steps": 100,
+  "max_steps": 1000,
+  "num_input_tokens_seen": 0,
+  "num_train_epochs": 9223372036854775807,
+  "save_steps": 100,
+  "stateful_callbacks": {
+    "TrainerControl": {
+      "args": {
+        "should_epoch_stop": false,
+        "should_evaluate": false,
+        "should_log": false,
+        "should_save": true,
+        "should_training_stop": false
+      },
+      "attributes": {}
+    }
+  },
+  "total_flos": 0.0,
+  "train_batch_size": 4,
+  "trial_name": null,
+  "trial_params": null
+}
